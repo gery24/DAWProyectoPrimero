@@ -5,11 +5,15 @@ using UnityEngine;
 public class NauJugador : MonoBehaviour
 {
     private float _vel;
+
+    Vector2 minPantalla, maxPantalla;
     
     // Start is called before the first frame update
     void Start()
     {
-        _vel = 15;    
+        _vel = 15;
+        minPantalla = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+        maxPantalla = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
     }
 
     // Update is called once per frame
@@ -22,6 +26,10 @@ public class NauJugador : MonoBehaviour
 
         Vector2 novaPos = transform.position;//transform.position: pos actual de la nau
         novaPos = novaPos + direccioIndicada * _vel * Time.deltaTime;
+
+        novaPos.x = Mathf.Clamp(novaPos.x, minPantalla.x, maxPantalla.x);
+        novaPos.y = Mathf.Clamp(novaPos.y, minPantalla.y, maxPantalla.y);
+
         transform.position = novaPos;
     }
 }
