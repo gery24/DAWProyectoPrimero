@@ -35,4 +35,13 @@ public class Numero : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D objectaTocat)
+    {
+        if(objectaTocat.tag == "Jugador" || objectaTocat.tag == "ProjectilJugador")
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
