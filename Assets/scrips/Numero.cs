@@ -12,10 +12,12 @@ public class Numero : MonoBehaviour
 
     private int valorNumero;
 
+    [SerializeField] private GameObject prefabExplosio;
+
     // Start is called before the first frame update
     void Start()
     {
-        vel = 3f;
+        vel = 20f;
         minPantalla = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
 
         System.Random numAleatori = new System.Random();
@@ -40,6 +42,9 @@ public class Numero : MonoBehaviour
     {
         if(objectaTocat.tag == "Jugador" || objectaTocat.tag == "ProjectilJugador")
         {
+            GameObject explosio = Instantiate(prefabExplosio);
+            explosio.transform.position = transform.position;
+
             Destroy(gameObject);
         }
     }
